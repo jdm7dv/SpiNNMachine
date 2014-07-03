@@ -1,0 +1,198 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>spinn_machine.multicast_routing_entry module &mdash; SpiNNMachine  documentation</title>
+    
+    <link rel="stylesheet" href="_static/sphinxdoc.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="top" title="SpiNNMachine  documentation" href="index.html" />
+    <link rel="up" title="spinn_machine package" href="spinn_machine.html" />
+    <link rel="next" title="spinn_machine.processor module" href="spinn_machine.processor.html" />
+    <link rel="prev" title="spinn_machine.machine module" href="spinn_machine.machine.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="spinn_machine.processor.html" title="spinn_machine.processor module"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="spinn_machine.machine.html" title="spinn_machine.machine module"
+             accesskey="P">previous</a> |</li>
+        <li><a href="index.html">SpiNNMachine  documentation</a> &raquo;</li>
+          <li><a href="spinn_machine.html" accesskey="U">spinn_machine package</a> &raquo;</li> 
+      </ul>
+    </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="spinn_machine.machine.html"
+                        title="previous chapter">spinn_machine.machine module</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="spinn_machine.processor.html"
+                        title="next chapter">spinn_machine.processor module</a></p>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="_sources/spinn_machine.multicast_routing_entry.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="module-spinn_machine.multicast_routing_entry">
+<span id="spinn-machine-multicast-routing-entry-module"></span><h1>spinn_machine.multicast_routing_entry module<a class="headerlink" href="#module-spinn_machine.multicast_routing_entry" title="Permalink to this headline">¶</a></h1>
+<dl class="class">
+<dt id="spinn_machine.multicast_routing_entry.MulticastRoutingEntry">
+<em class="property">class </em><tt class="descclassname">spinn_machine.multicast_routing_entry.</tt><tt class="descname">MulticastRoutingEntry</tt><big>(</big><em>key</em>, <em>mask</em>, <em>processor_ids</em>, <em>link_ids</em><big>)</big><a class="reference internal" href="_modules/spinn_machine/multicast_routing_entry.html#MulticastRoutingEntry"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#spinn_machine.multicast_routing_entry.MulticastRoutingEntry" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <tt class="xref py py-class docutils literal"><span class="pre">object</span></tt></p>
+<p>Represents an entry in a multicast routing table</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>key</strong> (<em>int</em>) &#8211; The routing key</li>
+<li><strong>mask</strong> (<em>int</em>) &#8211; The route key mask</li>
+<li><strong>processor_ids</strong> (<em>iterable of int</em>) &#8211; The destination processor ids</li>
+<li><strong>link_ids</strong> (<em>iterable of int</em>) &#8211; The destination link ids</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Raises None:</th><td class="field-body"><p class="first last">No known exceptions are raised</p>
+</td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Attributes</p>
+<table border="1" class="longtable docutils">
+<colgroup>
+<col width="10%" />
+<col width="90%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><tt class="xref py py-obj docutils literal"><span class="pre">key</span></tt></td>
+<td>The routing key</td>
+</tr>
+<tr class="row-even"><td><tt class="xref py py-obj docutils literal"><span class="pre">link_ids</span></tt></td>
+<td>The destination link ids</td>
+</tr>
+<tr class="row-odd"><td><tt class="xref py py-obj docutils literal"><span class="pre">mask</span></tt></td>
+<td>The routing mask</td>
+</tr>
+<tr class="row-even"><td><tt class="xref py py-obj docutils literal"><span class="pre">processor_ids</span></tt></td>
+<td>The destination processor ids</td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Methods</p>
+<table border="1" class="longtable docutils">
+<colgroup>
+<col width="10%" />
+<col width="90%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><a class="reference internal" href="#spinn_machine.multicast_routing_entry.MulticastRoutingEntry.merge" title="spinn_machine.multicast_routing_entry.MulticastRoutingEntry.merge"><tt class="xref py py-obj docutils literal"><span class="pre">merge</span></tt></a>(other_entry)</td>
+<td>Merges together two multicast routing entries.</td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Detailed Methods</p>
+<dl class="method">
+<dt id="spinn_machine.multicast_routing_entry.MulticastRoutingEntry.merge">
+<tt class="descname">merge</tt><big>(</big><em>other_entry</em><big>)</big><a class="reference internal" href="_modules/spinn_machine/multicast_routing_entry.html#MulticastRoutingEntry.merge"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#spinn_machine.multicast_routing_entry.MulticastRoutingEntry.merge" title="Permalink to this definition">¶</a></dt>
+<dd><p>Merges together two multicast routing entries.  The entry to merge            must have the same key and mask.  The merge will join the processor            ids and link ids from both the entries.  This could be used to add            a new destination to an existing route in a routing table.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>other_entry</strong> (<a class="reference internal" href="#spinn_machine.multicast_routing_entry.MulticastRoutingEntry" title="spinn_machine.multicast_routing_entry.MulticastRoutingEntry"><tt class="xref py py-class docutils literal"><span class="pre">MulticastRoutingEntry</span></tt></a>) &#8211; The multicast entry to merge with this entry</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">A new multicast routing entry with merged destinations</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><a class="reference internal" href="#spinn_machine.multicast_routing_entry.MulticastRoutingEntry" title="spinn_machine.multicast_routing_entry.MulticastRoutingEntry"><tt class="xref py py-class docutils literal"><span class="pre">MulticastRoutingEntry</span></tt></a></td>
+</tr>
+<tr class="field-even field"><th class="field-name" colspan="2">Raises <a class="reference internal" href="spinn_machine.exceptions.html#spinn_machine.exceptions.SpinnMachineInvalidParameterException" title="spinn_machine.exceptions.SpinnMachineInvalidParameterException">spinn_machine.exceptions.SpinnMachineInvalidParameterException</a>:</th></tr>
+<tr class="field-even field"><td>&nbsp;</td><td class="field-body">If the key and mask of the other entry do not match</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="spinn_machine.processor.html" title="spinn_machine.processor module"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="spinn_machine.machine.html" title="spinn_machine.machine module"
+             >previous</a> |</li>
+        <li><a href="index.html">SpiNNMachine  documentation</a> &raquo;</li>
+          <li><a href="spinn_machine.html" >spinn_machine package</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2014.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.2.
+    </div>
+  </body>
+</html>

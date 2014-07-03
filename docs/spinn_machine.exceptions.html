@@ -97,6 +97,9 @@
 <tr class="row-even"><td><a class="reference internal" href="#spinn_machine.exceptions.SpinnMachineException" title="spinn_machine.exceptions.SpinnMachineException"><tt class="xref py py-obj docutils literal"><span class="pre">SpinnMachineException</span></tt></a></td>
 <td>A generic exception which all other exceptions extend</td>
 </tr>
+<tr class="row-odd"><td><a class="reference internal" href="#spinn_machine.exceptions.SpinnMachineInvalidParameterException" title="spinn_machine.exceptions.SpinnMachineInvalidParameterException"><tt class="xref py py-obj docutils literal"><span class="pre">SpinnMachineInvalidParameterException</span></tt></a>(...)</td>
+<td>Indicates that there is a problem with a parameter value</td>
+</tr>
 </tbody>
 </table>
 <dl class="exception">
@@ -121,6 +124,25 @@
 <dt id="spinn_machine.exceptions.SpinnMachineException">
 <em class="property">exception </em><tt class="descclassname">spinn_machine.exceptions.</tt><tt class="descname">SpinnMachineException</tt><a class="reference internal" href="_modules/spinn_machine/exceptions.html#SpinnMachineException"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#spinn_machine.exceptions.SpinnMachineException" title="Permalink to this definition">¶</a></dt>
 <dd><p>A generic exception which all other exceptions extend</p>
+</dd></dl>
+
+<dl class="exception">
+<dt id="spinn_machine.exceptions.SpinnMachineInvalidParameterException">
+<em class="property">exception </em><tt class="descclassname">spinn_machine.exceptions.</tt><tt class="descname">SpinnMachineInvalidParameterException</tt><big>(</big><em>parameter</em>, <em>value</em>, <em>problem</em><big>)</big><a class="reference internal" href="_modules/spinn_machine/exceptions.html#SpinnMachineInvalidParameterException"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#spinn_machine.exceptions.SpinnMachineInvalidParameterException" title="Permalink to this definition">¶</a></dt>
+<dd><p>Indicates that there is a problem with a parameter value</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>parameter</strong> &#8211; The name of the parameter that has an invalid value</li>
+<li><strong>value</strong> (<em>str</em>) &#8211; The value of the parameter that is invalid</li>
+<li><strong>problem</strong> (<em>str</em>) &#8211; The reason for the exception</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
 </dd></dl>
 
 </div>
