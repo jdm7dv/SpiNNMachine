@@ -93,9 +93,16 @@
 <span class="sd">                    such that multicast traffic received on this link will\</span>
 <span class="sd">                    default to that link if no routing entry exists, or None</span>
 <span class="sd">                    if there is no such default link</span>
+<span class="sd">        :type multicast_default_to: int</span>
 <span class="sd">        :raise None: No known exceptions are raised</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">pass</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_source_x</span> <span class="o">=</span> <span class="n">source_x</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_source_y</span> <span class="o">=</span> <span class="n">source_y</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_source_link_id</span> <span class="o">=</span> <span class="n">source_link_id</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_destination_x</span> <span class="o">=</span> <span class="n">destination_x</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_destination_y</span> <span class="o">=</span> <span class="n">destination_y</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_multicast_default_from</span> <span class="o">=</span> <span class="n">multicast_default_from</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_multicast_default_to</span> <span class="o">=</span> <span class="n">multicast_default_to</span>
     
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">source_x</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
@@ -104,7 +111,7 @@
 <span class="sd">        :return: The x-coordinate</span>
 <span class="sd">        :rtype: int</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">pass</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_source_x</span>
     
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">source_y</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
@@ -113,7 +120,7 @@
 <span class="sd">        :return: The y-coordinate</span>
 <span class="sd">        :rtype: int</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">pass</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_source_y</span>
     
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">source_link_id</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
@@ -122,7 +129,7 @@
 <span class="sd">        :return: The link id</span>
 <span class="sd">        :rtype: int</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">pass</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_source_link_id</span>
     
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">destination_x</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
@@ -131,7 +138,7 @@
 <span class="sd">        :return: The x-coordinate</span>
 <span class="sd">        :rtype: int</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">pass</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_destination_x</span>
     
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">destination_y</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
@@ -140,7 +147,7 @@
 <span class="sd">        :return: The y-coordinate</span>
 <span class="sd">        :rtype: int</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">pass</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_destination_y</span>
     
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">multicast_default_from</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
@@ -149,7 +156,7 @@
 <span class="sd">        :return: The id of a link, or None if no such link</span>
 <span class="sd">        :rtype: int</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">pass</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_multicast_default_from</span>
     
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">multicast_default_to</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
@@ -158,7 +165,7 @@
 <span class="sd">        :return: The id of a link, or None if no such link</span>
 <span class="sd">        :rtype: int</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">pass</span></div>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_multicast_default_to</span></div>
 </pre></div>
 
           </div>

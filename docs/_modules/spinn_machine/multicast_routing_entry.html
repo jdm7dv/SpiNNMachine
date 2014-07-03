@@ -64,6 +64,10 @@
           <div class="body">
             
   <h1>Source code for spinn_machine.multicast_routing_entry</h1><div class="highlight"><pre>
+<span class="kn">from</span> <span class="nn">spinn_machine.exceptions</span> <span class="kn">import</span> <span class="n">SpinnMachineAlreadyExistsException</span>
+<span class="kn">from</span> <span class="nn">spinn_machine.exceptions</span> <span class="kn">import</span> <span class="n">SpinnMachineInvalidParameterException</span>
+
+
 <div class="viewcode-block" id="MulticastRoutingEntry"><a class="viewcode-back" href="../../spinn_machine.multicast_routing_entry.html#spinn_machine.multicast_routing_entry.MulticastRoutingEntry">[docs]</a><span class="k">class</span> <span class="nc">MulticastRoutingEntry</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot; Represents an entry in a multicast routing table</span>
 <span class="sd">    &quot;&quot;&quot;</span>
@@ -79,9 +83,28 @@
 <span class="sd">        :type processor_ids: iterable of int</span>
 <span class="sd">        :param link_ids: The destination link ids</span>
 <span class="sd">        :type link_ids: iterable of int</span>
-<span class="sd">        :raise None: No known exceptions are raised</span>
+<span class="sd">        :raise spinn_machine.exceptions.SpinnMachineAlreadyExistsException:</span>
+<span class="sd">                    * If processor_ids contains the same id more than once</span>
+<span class="sd">                    * If link_ids contains the same id more than once</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">pass</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_key</span> <span class="o">=</span> <span class="n">key</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_mask</span> <span class="o">=</span> <span class="n">mask</span>
+        
+        <span class="c"># Add processor ids, checking that there is only one of each</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_processor_ids</span> <span class="o">=</span> <span class="nb">set</span><span class="p">()</span>
+        <span class="k">for</span> <span class="n">processor_id</span> <span class="ow">in</span> <span class="n">processor_ids</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">processor_id</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_processor_ids</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="n">SpinnMachineAlreadyExistsException</span><span class="p">(</span>
+                        <span class="s">&quot;processor id&quot;</span><span class="p">,</span> <span class="nb">str</span><span class="p">(</span><span class="n">processor_id</span><span class="p">))</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_processor_ids</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">processor_id</span><span class="p">)</span>
+        
+        <span class="c"># Add link ids, checking that there is only one of each</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_link_ids</span> <span class="o">=</span> <span class="nb">set</span><span class="p">()</span>
+        <span class="k">for</span> <span class="n">link_id</span> <span class="ow">in</span> <span class="n">link_ids</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">link_id</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_link_ids</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="n">SpinnMachineAlreadyExistsException</span><span class="p">(</span>
+                        <span class="s">&quot;link id&quot;</span><span class="p">,</span> <span class="nb">str</span><span class="p">(</span><span class="n">link_id</span><span class="p">))</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_link_ids</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">link_id</span><span class="p">)</span>
     
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">key</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
@@ -90,7 +113,7 @@
 <span class="sd">        :return: The routing key</span>
 <span class="sd">        :rtype: int</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">pass</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_key</span>
     
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">mask</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
@@ -99,7 +122,7 @@
 <span class="sd">        :return: The routing mask</span>
 <span class="sd">        :rtype: int</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">pass</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_mask</span>
     
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">processor_ids</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
@@ -108,7 +131,7 @@
 <span class="sd">        :return: An iterable of processor ids</span>
 <span class="sd">        :rtype: iterable of int</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">pass</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_processor_ids</span>
     
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">link_ids</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
@@ -117,7 +140,7 @@
 <span class="sd">        :return: An iterable of link ids</span>
 <span class="sd">        :rtype: iterable of int</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">pass</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_link_ids</span>
     
 <div class="viewcode-block" id="MulticastRoutingEntry.merge"><a class="viewcode-back" href="../../spinn_machine.multicast_routing_entry.html#spinn_machine.multicast_routing_entry.MulticastRoutingEntry.merge">[docs]</a>    <span class="k">def</span> <span class="nf">merge</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other_entry</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot; Merges together two multicast routing entries.  The entry to merge\</span>
@@ -132,7 +155,21 @@
 <span class="sd">        :raise spinn_machine.exceptions.SpinnMachineInvalidParameterException:\</span>
 <span class="sd">                    If the key and mask of the other entry do not match</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">pass</span></div></div>
+        <span class="k">if</span> <span class="n">other_entry</span><span class="o">.</span><span class="n">key</span> <span class="o">!=</span> <span class="bp">self</span><span class="o">.</span><span class="n">key</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="n">SpinnMachineInvalidParameterException</span><span class="p">(</span>
+                    <span class="s">&quot;other_entry.key&quot;</span><span class="p">,</span> <span class="nb">hex</span><span class="p">(</span><span class="n">other_entry</span><span class="o">.</span><span class="n">key</span><span class="p">),</span> 
+                    <span class="s">&quot;The key does not match {}&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="nb">hex</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">key</span><span class="p">)))</span>
+        
+        <span class="k">if</span> <span class="n">other_entry</span><span class="o">.</span><span class="n">mask</span> <span class="o">!=</span> <span class="bp">self</span><span class="o">.</span><span class="n">mask</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="n">SpinnMachineInvalidParameterException</span><span class="p">(</span>
+                    <span class="s">&quot;other_entry.mask&quot;</span><span class="p">,</span> <span class="nb">hex</span><span class="p">(</span><span class="n">other_entry</span><span class="o">.</span><span class="n">mask</span><span class="p">),</span> 
+                    <span class="s">&quot;The mask does not match {}&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="nb">hex</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">mask</span><span class="p">)))</span>
+        
+        <span class="n">new_entry</span> <span class="o">=</span> <span class="n">MulticastRoutingEntry</span><span class="p">(</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">key</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">mask</span><span class="p">,</span> 
+                <span class="bp">self</span><span class="o">.</span><span class="n">_processor_ids</span><span class="o">.</span><span class="n">union</span><span class="p">(</span><span class="n">other_entry</span><span class="o">.</span><span class="n">processor_ids</span><span class="p">),</span> 
+                <span class="bp">self</span><span class="o">.</span><span class="n">_link_ids</span><span class="o">.</span><span class="n">union</span><span class="p">(</span><span class="n">other_entry</span><span class="o">.</span><span class="n">link_ids</span><span class="p">))</span>
+        <span class="k">return</span> <span class="n">new_entry</span></div></div>
 </pre></div>
 
           </div>

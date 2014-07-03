@@ -64,7 +64,10 @@
           <div class="body">
             
   <h1>Source code for spinn_machine.sdram</h1><div class="highlight"><pre>
+<span class="kn">from</span> <span class="nn">spinn_machine.exceptions</span> <span class="kn">import</span> <span class="n">SpinnMachineInvalidParameterException</span>
+
 <span class="n">DEFAULT_SDRAM_BYTES</span> <span class="o">=</span> <span class="mi">128</span> <span class="o">*</span> <span class="mi">1024</span> <span class="o">*</span> <span class="mi">1024</span>
+
 
 <div class="viewcode-block" id="SDRAM"><a class="viewcode-back" href="../../spinn_machine.sdram.html#spinn_machine.sdram.SDRAM">[docs]</a><span class="k">class</span> <span class="nc">SDRAM</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot; Represents the properties of the SDRAM of a chip in the machine</span>
@@ -75,8 +78,12 @@
 
 <span class="sd">        :param size: size of the SDRAM in bytes</span>
 <span class="sd">        :type size: int</span>
-<span class="sd">        :raise None: does not raise any known exceptions</span>
+<span class="sd">        :raise spinn_machine.exceptions.SpinnMachineInvalidParameterException:\</span>
+<span class="sd">                    If the size is less than 0</span>
 <span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="n">size</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="n">SpinnMachineInvalidParameterException</span><span class="p">(</span><span class="s">&quot;size&quot;</span><span class="p">,</span> <span class="n">size</span><span class="p">,</span>
+                    <span class="s">&quot;Must not be less than 0&quot;</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_size</span> <span class="o">=</span> <span class="n">size</span>
 
     <span class="nd">@property</span>
