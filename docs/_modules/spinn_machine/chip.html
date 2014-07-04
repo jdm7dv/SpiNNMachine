@@ -69,7 +69,12 @@
 
 <div class="viewcode-block" id="Chip"><a class="viewcode-back" href="../../spinn_machine.chip.html#spinn_machine.chip.Chip">[docs]</a><span class="k">class</span> <span class="nc">Chip</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot; Represents a chip with a number of cores, an amount of SDRAM shared</span>
-<span class="sd">        between the cores, and a router</span>
+<span class="sd">        between the cores, and a router.\</span>
+<span class="sd">        The chip is iterable over the processors providing\</span>
+<span class="sd">        (processor_id, processor) where:</span>
+<span class="sd">        </span>
+<span class="sd">            * processor_id is the id of a processor</span>
+<span class="sd">            * processor is the processor with processor_id</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">processors</span><span class="p">,</span> <span class="n">router</span><span class="p">,</span> <span class="n">sdram</span><span class="p">,</span> <span class="n">ip_address</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
@@ -108,7 +113,8 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">_ip_address</span> <span class="o">=</span> <span class="n">ip_address</span>
 
 <div class="viewcode-block" id="Chip.is_processor_with_id"><a class="viewcode-back" href="../../spinn_machine.chip.html#spinn_machine.chip.Chip.is_processor_with_id">[docs]</a>    <span class="k">def</span> <span class="nf">is_processor_with_id</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">processor_id</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot; Determines if a processor with the given id exists in the chip</span>
+        <span class="sd">&quot;&quot;&quot; Determines if a processor with the given id exists in the chip.\</span>
+<span class="sd">            Also implemented as __getitem__(processor_id)</span>
 
 <span class="sd">        :param processor_id: the processor id to check for</span>
 <span class="sd">        :type processor_id: int</span>
@@ -117,11 +123,17 @@
 <span class="sd">        :raise None: does not raise any known exceptions</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="n">processor_id</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_p</span>
-</div>
+    </div>
+    <span class="k">def</span> <span class="nf">__getitem__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">processor_id</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot; see :py:meth:`is_processor_with_id`</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">is_processor_with_id</span><span class="p">(</span><span class="n">processor_id</span><span class="p">)</span>
+
 <div class="viewcode-block" id="Chip.get_processor_with_id"><a class="viewcode-back" href="../../spinn_machine.chip.html#spinn_machine.chip.Chip.get_processor_with_id">[docs]</a>    <span class="k">def</span> <span class="nf">get_processor_with_id</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">processor_id</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot; Return the processor with the specified id or None if the processor\</span>
-<span class="sd">            does not exist</span>
-
+<span class="sd">            does not exist.\</span>
+<span class="sd">            Also implemented as __contains__(processor_id)</span>
+<span class="sd">        </span>
 <span class="sd">        :param processor_id: the id of the processor to return</span>
 <span class="sd">        :type processor_id: int</span>
 <span class="sd">        :return: the processor with the specified id or None if no such\</span>
@@ -132,7 +144,12 @@
         <span class="k">if</span> <span class="n">processor_id</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_p</span><span class="p">:</span>
             <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_p</span><span class="p">[</span><span class="n">processor_id</span><span class="p">]</span>
         <span class="k">return</span> <span class="bp">None</span>
-</div>
+    </div>
+    <span class="k">def</span> <span class="nf">__contains__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">processor_id</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot; see :py:meth:`get_processor_with_id`</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_processor_with_id</span><span class="p">(</span><span class="n">processor_id</span><span class="p">)</span>
+
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">x</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot; The x-coordinate of the chip in the two-dimensional grid of chips</span>
@@ -162,6 +179,17 @@
 <span class="sd">        :raise None: does not raise any known exceptions</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_p</span><span class="o">.</span><span class="n">itervalues</span><span class="p">()</span>
+    
+    <span class="k">def</span> <span class="nf">__iter__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot; Get an iterable of processor identifiers and processors</span>
+<span class="sd">        </span>
+<span class="sd">        :return: An iterable of (processor_id, processor) where:</span>
+<span class="sd">                    * procssor_id is the id of a processor</span>
+<span class="sd">                    * processor is the processor with the id</span>
+<span class="sd">        :rtype: iterable of (int, :py:class:spinn_machine.processor.Processor`)</span>
+<span class="sd">        :raise None: does not raise any known exceptions</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_p</span><span class="o">.</span><span class="n">iteritems</span><span class="p">()</span>
 
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">router</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>

@@ -89,7 +89,13 @@
 <em class="property">class </em><tt class="descclassname">spinn_machine.chip.</tt><tt class="descname">Chip</tt><big>(</big><em>x</em>, <em>y</em>, <em>processors</em>, <em>router</em>, <em>sdram</em>, <em>ip_address=None</em><big>)</big><a class="reference internal" href="_modules/spinn_machine/chip.html#Chip"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#spinn_machine.chip.Chip" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <tt class="xref py py-class docutils literal"><span class="pre">object</span></tt></p>
 <p>Represents a chip with a number of cores, an amount of SDRAM shared
-between the cores, and a router</p>
+between the cores, and a router.        The chip is iterable over the processors providing        (processor_id, processor) where:</p>
+<blockquote>
+<div><ul class="simple">
+<li>processor_id is the id of a processor</li>
+<li>processor is the processor with processor_id</li>
+</ul>
+</div></blockquote>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
@@ -145,10 +151,10 @@ between the cores, and a router</p>
 </colgroup>
 <tbody valign="top">
 <tr class="row-odd"><td><a class="reference internal" href="#spinn_machine.chip.Chip.get_processor_with_id" title="spinn_machine.chip.Chip.get_processor_with_id"><tt class="xref py py-obj docutils literal"><span class="pre">get_processor_with_id</span></tt></a>(processor_id)</td>
-<td>Return the processor with the specified id or None if the processor            does not exist</td>
+<td>Return the processor with the specified id or None if the processor            does not exist.</td>
 </tr>
 <tr class="row-even"><td><a class="reference internal" href="#spinn_machine.chip.Chip.is_processor_with_id" title="spinn_machine.chip.Chip.is_processor_with_id"><tt class="xref py py-obj docutils literal"><span class="pre">is_processor_with_id</span></tt></a>(processor_id)</td>
-<td>Determines if a processor with the given id exists in the chip</td>
+<td>Determines if a processor with the given id exists in the chip.</td>
 </tr>
 </tbody>
 </table>
@@ -156,7 +162,7 @@ between the cores, and a router</p>
 <dl class="method">
 <dt id="spinn_machine.chip.Chip.get_processor_with_id">
 <tt class="descname">get_processor_with_id</tt><big>(</big><em>processor_id</em><big>)</big><a class="reference internal" href="_modules/spinn_machine/chip.html#Chip.get_processor_with_id"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#spinn_machine.chip.Chip.get_processor_with_id" title="Permalink to this definition">¶</a></dt>
-<dd><p>Return the processor with the specified id or None if the processor            does not exist</p>
+<dd><p>Return the processor with the specified id or None if the processor            does not exist.            Also implemented as __contains__(processor_id)</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
@@ -176,7 +182,7 @@ between the cores, and a router</p>
 <dl class="method">
 <dt id="spinn_machine.chip.Chip.is_processor_with_id">
 <tt class="descname">is_processor_with_id</tt><big>(</big><em>processor_id</em><big>)</big><a class="reference internal" href="_modules/spinn_machine/chip.html#Chip.is_processor_with_id"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#spinn_machine.chip.Chip.is_processor_with_id" title="Permalink to this definition">¶</a></dt>
-<dd><p>Determines if a processor with the given id exists in the chip</p>
+<dd><p>Determines if a processor with the given id exists in the chip.            Also implemented as __getitem__(processor_id)</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />

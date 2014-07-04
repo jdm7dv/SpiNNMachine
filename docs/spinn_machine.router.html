@@ -86,17 +86,28 @@
 <span id="spinn-machine-router-module"></span><h1>spinn_machine.router module<a class="headerlink" href="#module-spinn_machine.router" title="Permalink to this headline">¶</a></h1>
 <dl class="class">
 <dt id="spinn_machine.router.Router">
-<em class="property">class </em><tt class="descclassname">spinn_machine.router.</tt><tt class="descname">Router</tt><big>(</big><em>links</em><big>)</big><a class="reference internal" href="_modules/spinn_machine/router.html#Router"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#spinn_machine.router.Router" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><tt class="descclassname">spinn_machine.router.</tt><tt class="descname">Router</tt><big>(</big><em>links</em>, <em>emergency_routing_enabled</em>, <em>clock_speed</em>, <em>n_available_multicast_entries</em><big>)</big><a class="reference internal" href="_modules/spinn_machine/router.html#Router"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#spinn_machine.router.Router" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <tt class="xref py py-class docutils literal"><span class="pre">object</span></tt></p>
-<p>Represents a router of a chip, with a set of available links</p>
+<p>Represents a router of a chip, with a set of available links.        The router is iterable over the links, providing (source_link_id, link)        where:</p>
+<ul class="simple">
+<li>source_link_id is the id of a link</li>
+<li>link is the link with id source_link_id</li>
+</ul>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>links</strong> (iterable of <a class="reference internal" href="spinn_machine.link.html#spinn_machine.link.Link" title="spinn_machine.link.Link"><tt class="xref py py-class docutils literal"><span class="pre">spinn_machine.link.Link</span></tt></a>) &#8211; iterable of links</td>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>links</strong> (iterable of <a class="reference internal" href="spinn_machine.link.html#spinn_machine.link.Link" title="spinn_machine.link.Link"><tt class="xref py py-class docutils literal"><span class="pre">spinn_machine.link.Link</span></tt></a>) &#8211; iterable of links</li>
+<li><strong>emergency_routing_enabled</strong> (<em>bool</em>) &#8211; Determines if the router emergency                    routing is operating</li>
+<li><strong>clock_speed</strong> (<em>int</em>) &#8211; The router clock speed in cycles per second</li>
+<li><strong>n_available_multicast_entries</strong> (<em>int</em>) &#8211; The number of entries available                    in the routing table</li>
+</ul>
+</td>
 </tr>
 <tr class="field-even field"><th class="field-name" colspan="2">Raises <a class="reference internal" href="spinn_machine.exceptions.html#spinn_machine.exceptions.SpinnMachineAlreadyExistsException" title="spinn_machine.exceptions.SpinnMachineAlreadyExistsException">spinn_machine.exceptions.SpinnMachineAlreadyExistsException</a>:</th></tr>
-<tr class="field-even field"><td>&nbsp;</td><td class="field-body">If                    any two links have the same source_link_id</td>
+<tr class="field-even field"><td>&nbsp;</td><td class="field-body"><p class="first last">If                    any two links have the same source_link_id</p>
+</td>
 </tr>
 </tbody>
 </table>
@@ -107,8 +118,17 @@
 <col width="90%" />
 </colgroup>
 <tbody valign="top">
+<tr class="row-odd"><td><tt class="xref py py-obj docutils literal"><span class="pre">clock_speed</span></tt></td>
+<td>The clock speed of the router in cycles per second</td>
+</tr>
+<tr class="row-even"><td><tt class="xref py py-obj docutils literal"><span class="pre">emergency_routing_enabled</span></tt></td>
+<td>Indicator of whether emergency routing is enabled</td>
+</tr>
 <tr class="row-odd"><td><tt class="xref py py-obj docutils literal"><span class="pre">links</span></tt></td>
 <td>The available links of this router</td>
+</tr>
+<tr class="row-even"><td><tt class="xref py py-obj docutils literal"><span class="pre">n_available_multicast_entries</span></tt></td>
+<td>The number of available multicast entries in the routing tables</td>
 </tr>
 </tbody>
 </table>
@@ -120,10 +140,10 @@
 </colgroup>
 <tbody valign="top">
 <tr class="row-odd"><td><a class="reference internal" href="#spinn_machine.router.Router.get_link" title="spinn_machine.router.Router.get_link"><tt class="xref py py-obj docutils literal"><span class="pre">get_link</span></tt></a>(source_link_id)</td>
-<td>Get the link with the given id, or None if no such link</td>
+<td>Get the link with the given id, or None if no such link.</td>
 </tr>
 <tr class="row-even"><td><a class="reference internal" href="#spinn_machine.router.Router.is_link" title="spinn_machine.router.Router.is_link"><tt class="xref py py-obj docutils literal"><span class="pre">is_link</span></tt></a>(source_link_id)</td>
-<td>Determine if there is a link with id source_link_id</td>
+<td>Determine if there is a link with id source_link_id.</td>
 </tr>
 </tbody>
 </table>
@@ -131,7 +151,7 @@
 <dl class="method">
 <dt id="spinn_machine.router.Router.get_link">
 <tt class="descname">get_link</tt><big>(</big><em>source_link_id</em><big>)</big><a class="reference internal" href="_modules/spinn_machine/router.html#Router.get_link"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#spinn_machine.router.Router.get_link" title="Permalink to this definition">¶</a></dt>
-<dd><p>Get the link with the given id, or None if no such link</p>
+<dd><p>Get the link with the given id, or None if no such link.            Also implemented as __getitem__(source_link_id)</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
@@ -151,7 +171,7 @@
 <dl class="method">
 <dt id="spinn_machine.router.Router.is_link">
 <tt class="descname">is_link</tt><big>(</big><em>source_link_id</em><big>)</big><a class="reference internal" href="_modules/spinn_machine/router.html#Router.is_link"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#spinn_machine.router.Router.is_link" title="Permalink to this definition">¶</a></dt>
-<dd><p>Determine if there is a link with id source_link_id</p>
+<dd><p>Determine if there is a link with id source_link_id.            Also implemented as __contains__(source_link_id)</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />

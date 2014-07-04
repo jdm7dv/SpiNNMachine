@@ -67,15 +67,31 @@
 <span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">OrderedDict</span>
 <span class="kn">from</span> <span class="nn">spinn_machine.exceptions</span> <span class="kn">import</span> <span class="n">SpinnMachineAlreadyExistsException</span>
 
+<span class="n">DEFAULT_AVAILABLE_ENTRIES</span> <span class="o">=</span> <span class="mi">1024</span>
+<span class="n">DEFAULT_CLOCK_SPEED</span> <span class="o">=</span> <span class="mi">150</span> <span class="o">*</span> <span class="mi">1024</span> <span class="o">*</span> <span class="mi">1024</span>
+
 <div class="viewcode-block" id="Router"><a class="viewcode-back" href="../../spinn_machine.router.html#spinn_machine.router.Router">[docs]</a><span class="k">class</span> <span class="nc">Router</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot; Represents a router of a chip, with a set of available links</span>
+    <span class="sd">&quot;&quot;&quot; Represents a router of a chip, with a set of available links.\</span>
+<span class="sd">        The router is iterable over the links, providing (source_link_id, link)\</span>
+<span class="sd">        where:</span>
+<span class="sd">        </span>
+<span class="sd">            * source_link_id is the id of a link</span>
+<span class="sd">            * link is the link with id source_link_id</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     
-    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">links</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">links</span><span class="p">,</span> <span class="n">emergency_routing_enabled</span><span class="p">,</span> <span class="n">clock_speed</span><span class="p">,</span> 
+            <span class="n">n_available_multicast_entries</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-
 <span class="sd">        :param links: iterable of links</span>
 <span class="sd">        :type links: iterable of :py:class:`spinn_machine.link.Link`</span>
+<span class="sd">        :param emergency_routing_enabled: Determines if the router emergency\</span>
+<span class="sd">                    routing is operating</span>
+<span class="sd">        :type emergency_routing_enabled: bool</span>
+<span class="sd">        :param clock_speed: The router clock speed in cycles per second</span>
+<span class="sd">        :type clock_speed: int</span>
+<span class="sd">        :param n_available_multicast_entries: The number of entries available\</span>
+<span class="sd">                    in the routing table</span>
+<span class="sd">        :type n_available_multicast_entries: int</span>
 <span class="sd">        :raise spinn_machine.exceptions.SpinnMachineAlreadyExistsException: If\</span>
 <span class="sd">                    any two links have the same source_link_id</span>
 <span class="sd">        &quot;&quot;&quot;</span>
@@ -86,8 +102,13 @@
                         <span class="s">&quot;link&quot;</span><span class="p">,</span> <span class="nb">str</span><span class="p">(</span><span class="n">link</span><span class="o">.</span><span class="n">source_link_id</span><span class="p">))</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">_links</span><span class="p">[</span><span class="n">link</span><span class="o">.</span><span class="n">source_link_id</span><span class="p">]</span> <span class="o">=</span> <span class="n">link</span>
             
+        <span class="bp">self</span><span class="o">.</span><span class="n">_emergency_routing_enabled</span> <span class="o">=</span> <span class="n">emergency_routing_enabled</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_clock_speed</span> <span class="o">=</span> <span class="n">clock_speed</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_n_available_multicast_entries</span> <span class="o">=</span> <span class="n">n_available_multicast_entries</span>
+            
 <div class="viewcode-block" id="Router.is_link"><a class="viewcode-back" href="../../spinn_machine.router.html#spinn_machine.router.Router.is_link">[docs]</a>    <span class="k">def</span> <span class="nf">is_link</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">source_link_id</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot; Determine if there is a link with id source_link_id</span>
+        <span class="sd">&quot;&quot;&quot; Determine if there is a link with id source_link_id.\</span>
+<span class="sd">            Also implemented as __contains__(source_link_id)</span>
 <span class="sd">        </span>
 <span class="sd">        :param source_link_id: The id of the link to find</span>
 <span class="sd">        :type source_link_id: int</span>
@@ -97,8 +118,14 @@
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="n">source_link_id</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_links</span>
     </div>
+    <span class="k">def</span> <span class="nf">__contains__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">source_link_id</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot; See :py:meth:`is_link`</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">is_link</span><span class="p">(</span><span class="n">source_link_id</span><span class="p">)</span>
+    
 <div class="viewcode-block" id="Router.get_link"><a class="viewcode-back" href="../../spinn_machine.router.html#spinn_machine.router.Router.get_link">[docs]</a>    <span class="k">def</span> <span class="nf">get_link</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">source_link_id</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot; Get the link with the given id, or None if no such link</span>
+        <span class="sd">&quot;&quot;&quot; Get the link with the given id, or None if no such link.\</span>
+<span class="sd">            Also implemented as __getitem__(source_link_id)</span>
 <span class="sd">        </span>
 <span class="sd">        :param source_link_id: The id of the link to find</span>
 <span class="sd">        :type source_link_id: int</span>
@@ -109,7 +136,12 @@
         <span class="k">if</span> <span class="n">source_link_id</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_links</span><span class="p">:</span>
             <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_links</span><span class="p">[</span><span class="n">source_link_id</span><span class="p">]</span>
         <span class="k">return</span> <span class="bp">None</span>
-        </div>
+    </div>
+    <span class="k">def</span> <span class="nf">__getitem__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">source_link_id</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot; See :py:meth:`get_link`</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_link</span><span class="p">(</span><span class="n">source_link_id</span><span class="p">)</span>
+        
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">links</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot; The available links of this router</span>
@@ -118,7 +150,48 @@
 <span class="sd">        :rtype: iterable of :py:class:`spinn_machine.link.Link`</span>
 <span class="sd">        :raise None: does not raise any known exceptions</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_links</span><span class="o">.</span><span class="n">itervalues</span><span class="p">()</span></div>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_links</span><span class="o">.</span><span class="n">itervalues</span><span class="p">()</span>
+    
+    <span class="k">def</span> <span class="nf">__iter__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot; Get an iterable of source link ids and links in the router</span>
+<span class="sd">        </span>
+<span class="sd">        :return: an iterable of tuples of (source_link_id, link) where:</span>
+<span class="sd">                    * source_link_id is the id of the link</span>
+<span class="sd">                    * link is a router link</span>
+<span class="sd">        :rtype: iterable of (int, :py:class:`spinn_machine.link.Link`)</span>
+<span class="sd">        :raise None: does not raise any known exceptions</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_links</span><span class="o">.</span><span class="n">iteritems</span><span class="p">()</span>
+    
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">emergency_routing_enabled</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot; Indicator of whether emergency routing is enabled</span>
+<span class="sd">        </span>
+<span class="sd">        :return: True if emergency routing is enabled, False otherwise</span>
+<span class="sd">        :rtype: bool</span>
+<span class="sd">        :raise None: does not raise any known exceptions</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_emergency_routing_enabled</span>
+    
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">clock_speed</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot; The clock speed of the router in cycles per second</span>
+<span class="sd">        </span>
+<span class="sd">        :return: The clock speed in cycles per second</span>
+<span class="sd">        :rtype: int</span>
+<span class="sd">        :raise None: does not raise any known exceptions</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_clock_speed</span>
+    
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">n_available_multicast_entries</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot; The number of available multicast entries in the routing tables</span>
+<span class="sd">        </span>
+<span class="sd">        :return: The number of available entries</span>
+<span class="sd">        :rtype: int</span>
+<span class="sd">        :raise None: does not raise any known exceptions</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_n_available_multicast_entries</span></div>
 </pre></div>
 
           </div>

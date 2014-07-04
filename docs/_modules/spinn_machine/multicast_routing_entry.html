@@ -146,7 +146,9 @@
         <span class="sd">&quot;&quot;&quot; Merges together two multicast routing entries.  The entry to merge\</span>
 <span class="sd">            must have the same key and mask.  The merge will join the processor\</span>
 <span class="sd">            ids and link ids from both the entries.  This could be used to add\</span>
-<span class="sd">            a new destination to an existing route in a routing table.</span>
+<span class="sd">            a new destination to an existing route in a routing table.\</span>
+<span class="sd">            It is also possible to use the add (+) operator or the or (|)\</span>
+<span class="sd">            operator with the same effect.</span>
 <span class="sd">            </span>
 <span class="sd">        :param other_entry: The multicast entry to merge with this entry</span>
 <span class="sd">        :type other_entry: :py:class:`MulticastRoutingEntry`</span>
@@ -169,7 +171,19 @@
                 <span class="bp">self</span><span class="o">.</span><span class="n">key</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">mask</span><span class="p">,</span> 
                 <span class="bp">self</span><span class="o">.</span><span class="n">_processor_ids</span><span class="o">.</span><span class="n">union</span><span class="p">(</span><span class="n">other_entry</span><span class="o">.</span><span class="n">processor_ids</span><span class="p">),</span> 
                 <span class="bp">self</span><span class="o">.</span><span class="n">_link_ids</span><span class="o">.</span><span class="n">union</span><span class="p">(</span><span class="n">other_entry</span><span class="o">.</span><span class="n">link_ids</span><span class="p">))</span>
-        <span class="k">return</span> <span class="n">new_entry</span></div></div>
+        <span class="k">return</span> <span class="n">new_entry</span>
+    </div>
+    <span class="k">def</span> <span class="nf">__add__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other_entry</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot; Allows overloading of + to merge two entries together.\</span>
+<span class="sd">            See :py:meth:`merge`</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">other_entry</span><span class="p">)</span>
+    
+    <span class="k">def</span> <span class="nf">__or__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other_entry</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot; Allows overloading of | to merge two entries together.\</span>
+<span class="sd">            See :py:meth:`merge`</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">other_entry</span><span class="p">)</span></div>
 </pre></div>
 
           </div>

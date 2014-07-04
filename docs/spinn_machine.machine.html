@@ -88,7 +88,12 @@
 <dt id="spinn_machine.machine.Machine">
 <em class="property">class </em><tt class="descclassname">spinn_machine.machine.</tt><tt class="descname">Machine</tt><big>(</big><em>chips</em><big>)</big><a class="reference internal" href="_modules/spinn_machine/machine.html#Machine"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#spinn_machine.machine.Machine" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <tt class="xref py py-class docutils literal"><span class="pre">object</span></tt></p>
-<p>A Representation of a Machine with a number of Chips</p>
+<p>A Representation of a Machine with a number of Chips.  Machine is also        iterable, providing ((x, y), chip) where:</p>
+<ul class="simple">
+<li>x is the x-coordinate of a chip</li>
+<li>y is the y-coordinate of a chip</li>
+<li>chip is the chip with the given x, y coordinates</li>
+</ul>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
@@ -132,10 +137,10 @@
 <td>Add some chips to the machine</td>
 </tr>
 <tr class="row-odd"><td><a class="reference internal" href="#spinn_machine.machine.Machine.get_chip_at" title="spinn_machine.machine.Machine.get_chip_at"><tt class="xref py py-obj docutils literal"><span class="pre">get_chip_at</span></tt></a>(x,&nbsp;y)</td>
-<td>Get the chip at a specific (x, y) location</td>
+<td>Get the chip at a specific (x, y) location.</td>
 </tr>
 <tr class="row-even"><td><a class="reference internal" href="#spinn_machine.machine.Machine.is_chip_at" title="spinn_machine.machine.Machine.is_chip_at"><tt class="xref py py-obj docutils literal"><span class="pre">is_chip_at</span></tt></a>(x,&nbsp;y)</td>
-<td>Determines if a chip exists at the given coordinates</td>
+<td>Determine if a chip exists at the given coordinates.</td>
 </tr>
 </tbody>
 </table>
@@ -185,7 +190,7 @@
 <dl class="method">
 <dt id="spinn_machine.machine.Machine.get_chip_at">
 <tt class="descname">get_chip_at</tt><big>(</big><em>x</em>, <em>y</em><big>)</big><a class="reference internal" href="_modules/spinn_machine/machine.html#Machine.get_chip_at"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#spinn_machine.machine.Machine.get_chip_at" title="Permalink to this definition">¶</a></dt>
-<dd><p>Get the chip at a specific (x, y) location</p>
+<dd><p>Get the chip at a specific (x, y) location.            Also implemented as __getitem__((x, y))</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
@@ -212,7 +217,7 @@
 <dl class="method">
 <dt id="spinn_machine.machine.Machine.is_chip_at">
 <tt class="descname">is_chip_at</tt><big>(</big><em>x</em>, <em>y</em><big>)</big><a class="reference internal" href="_modules/spinn_machine/machine.html#Machine.is_chip_at"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#spinn_machine.machine.Machine.is_chip_at" title="Permalink to this definition">¶</a></dt>
-<dd><p>Determines if a chip exists at the given coordinates</p>
+<dd><p>Determine if a chip exists at the given coordinates.            Also implemented as __contains__((x, y))</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />

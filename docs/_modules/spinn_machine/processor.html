@@ -64,18 +64,27 @@
           <div class="body">
             
   <h1>Source code for spinn_machine.processor</h1><div class="highlight"><pre>
+<span class="n">DEFAULT_CLOCK_SPEED</span> <span class="o">=</span> <span class="mi">200</span> <span class="o">*</span> <span class="mi">1000</span> <span class="o">*</span> <span class="mi">1000</span>
+
 <div class="viewcode-block" id="Processor"><a class="viewcode-back" href="../../spinn_machine.processor.html#spinn_machine.processor.Processor">[docs]</a><span class="k">class</span> <span class="nc">Processor</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot; A processor object included in a chip </span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
-    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">processor_id</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">processor_id</span><span class="p">,</span> <span class="n">clock_speed</span><span class="p">,</span> <span class="n">is_monitor</span><span class="o">=</span><span class="bp">False</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 
 <span class="sd">        :param processor_id: id of the processor in the chip</span>
 <span class="sd">        :type processor_id: int</span>
+<span class="sd">        :param clock_speed: The number of cpu cycles per second of the processor</span>
+<span class="sd">        :type clock_speed: int</span>
+<span class="sd">        :param is_monitor: Determines if the processor is considered the\</span>
+<span class="sd">                    monitor processor, and so should not be otherwise allocated</span>
+<span class="sd">        :type is_monitor: bool</span>
 <span class="sd">        :raise None: does not raise any known exceptions</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_processor_id</span> <span class="o">=</span> <span class="n">processor_id</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_clock_speed</span> <span class="o">=</span> <span class="n">clock_speed</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_is_monitor</span> <span class="o">=</span> <span class="n">is_monitor</span>
 
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">processor_id</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
@@ -85,7 +94,28 @@
 <span class="sd">        :rtype: int</span>
 <span class="sd">        :raise None: does not raise any known exceptions</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_processor_id</span></div>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_processor_id</span>
+    
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">clock_speed</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot; The clock speed of the processor in cycles per second</span>
+<span class="sd">        </span>
+<span class="sd">        :return: The clock speed in cycles per second</span>
+<span class="sd">        :rtype: int</span>
+<span class="sd">        :raise None: does not raise any known exceptions</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_clock_speed</span>
+    
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">is_monitor</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot; Determines if the processor is the monitor, and therefore not\</span>
+<span class="sd">            to be allocated</span>
+<span class="sd">        </span>
+<span class="sd">        :return: True if the processor is the monitor, False otherwise</span>
+<span class="sd">        :rtype: bool</span>
+<span class="sd">        :raise None: does not raise any known exceptions</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_is_monitor</span></div>
 </pre></div>
 
           </div>

@@ -86,16 +86,22 @@
 <span id="spinn-machine-processor-module"></span><h1>spinn_machine.processor module<a class="headerlink" href="#module-spinn_machine.processor" title="Permalink to this headline">¶</a></h1>
 <dl class="class">
 <dt id="spinn_machine.processor.Processor">
-<em class="property">class </em><tt class="descclassname">spinn_machine.processor.</tt><tt class="descname">Processor</tt><big>(</big><em>processor_id</em><big>)</big><a class="reference internal" href="_modules/spinn_machine/processor.html#Processor"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#spinn_machine.processor.Processor" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><tt class="descclassname">spinn_machine.processor.</tt><tt class="descname">Processor</tt><big>(</big><em>processor_id</em>, <em>clock_speed</em>, <em>is_monitor=False</em><big>)</big><a class="reference internal" href="_modules/spinn_machine/processor.html#Processor"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#spinn_machine.processor.Processor" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <tt class="xref py py-class docutils literal"><span class="pre">object</span></tt></p>
 <p>A processor object included in a chip</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>processor_id</strong> (<em>int</em>) &#8211; id of the processor in the chip</td>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>processor_id</strong> (<em>int</em>) &#8211; id of the processor in the chip</li>
+<li><strong>clock_speed</strong> (<em>int</em>) &#8211; The number of cpu cycles per second of the processor</li>
+<li><strong>is_monitor</strong> (<em>bool</em>) &#8211; Determines if the processor is considered the                    monitor processor, and so should not be otherwise allocated</li>
+</ul>
+</td>
 </tr>
-<tr class="field-even field"><th class="field-name">Raises None:</th><td class="field-body">does not raise any known exceptions</td>
+<tr class="field-even field"><th class="field-name">Raises None:</th><td class="field-body"><p class="first last">does not raise any known exceptions</p>
+</td>
 </tr>
 </tbody>
 </table>
@@ -106,6 +112,12 @@
 <col width="90%" />
 </colgroup>
 <tbody valign="top">
+<tr class="row-odd"><td><tt class="xref py py-obj docutils literal"><span class="pre">clock_speed</span></tt></td>
+<td>The clock speed of the processor in cycles per second</td>
+</tr>
+<tr class="row-even"><td><tt class="xref py py-obj docutils literal"><span class="pre">is_monitor</span></tt></td>
+<td>Determines if the processor is the monitor, and therefore not            to be allocated</td>
+</tr>
 <tr class="row-odd"><td><tt class="xref py py-obj docutils literal"><span class="pre">processor_id</span></tt></td>
 <td>The id of the processor</td>
 </tr>

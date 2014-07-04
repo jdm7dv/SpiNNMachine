@@ -99,10 +99,8 @@
 <li><strong>source_link_id</strong> (<em>int</em>) &#8211; The id of the link in the source chip</li>
 <li><strong>destination_x</strong> (<em>int</em>) &#8211; The x-coordinate of the destination chip of the                    link</li>
 <li><strong>destination_y</strong> (<em>int</em>) &#8211; The y-coordinate of the destination chip of the                    link</li>
-<li><strong>multicast_default_from</strong> (<em>int</em>) &#8211; The id of the link in the source chip                    such that multicast traffic received from that link will                    default to this link if no routing entry exists, or None
-if this link is not the default for any link</li>
-<li><strong>multicast_default_to</strong> (<em>int</em>) &#8211; The id of the link in the source chip                    such that multicast traffic received on this link will                    default to that link if no routing entry exists, or None
-if there is no such default link</li>
+<li><strong>multicast_default_from</strong> (<em>int</em>) &#8211; Traffic received on the link identified                    by multicast_default_from will be sent to the link herein                    defined if no entry is present in the multicast routing                    table.  On SpiNNaker chips, multicast_default_from is                    usually the same as multicast_default_to</li>
+<li><strong>multicast_default_to</strong> (<em>int</em>) &#8211; Traffic received on the link herein                    defined will be sent to the link identified by                    multicast_default_from if no entry is present in the                    multicast routing table.  On SpiNNaker chips,                    multicast_default_to is usually the same as                    multicast_default_from</li>
 </ul>
 </td>
 </tr>
