@@ -90,12 +90,35 @@
 <div class="section" id="functional-requirements">
 <h2>Functional Requirements<a class="headerlink" href="#functional-requirements" title="Permalink to this headline">¶</a></h2>
 <blockquote>
+<div><ul>
+<li><p class="first">Create a machine which represents the current state of a machine, in          terms of the available chips, cores on the chips, SDRAM available,
+routable links between chips and available routing entries.</p>
+</li>
+<li><p class="first">Create a machine which represents an abstract ideal machine.</p>
+<blockquote>
 <div><ul class="simple">
-<li>Create a machine which represents the current state of a machine, in          terms of the available chips, cores on the chips, SDRAM available,
-routable links between chips and available routing entries.</li>
-<li>Add a chip to a given machine to represent an external device.</li>
-<li>Add a link to a router of a given chip to represent a connection          to an external device.</li>
-<li>Create a representation of a multicast routing entry to be shared          between modules that deal with routing entries.</li>
+<li>There can only be one chip in the machine with given x, y              coordinates</li>
+<li>There can only be one processor in each chip with a given              processor id</li>
+<li>There can only be one link in the router of each chip with              a given id</li>
+</ul>
+</div></blockquote>
+</li>
+<li><p class="first">Add a chip to a given machine to represent an external device.</p>
+<blockquote>
+<div><ul class="simple">
+<li>A chip with the same x, y coordinates must not already exist              in the machine</li>
+</ul>
+</div></blockquote>
+</li>
+<li><p class="first">Add a link to a router of a given chip to represent a connection          to an external device.</p>
+<blockquote>
+<div><ul class="simple">
+<li>A link with the given id must not already exist in the chip</li>
+</ul>
+</div></blockquote>
+</li>
+<li><p class="first">Create a representation of a multicast routing entry to be shared          between modules that deal with routing entries.</p>
+</li>
 </ul>
 </div></blockquote>
 </div>
