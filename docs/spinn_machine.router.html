@@ -139,15 +139,39 @@
 <col width="90%" />
 </colgroup>
 <tbody valign="top">
-<tr class="row-odd"><td><a class="reference internal" href="#spinn_machine.router.Router.get_link" title="spinn_machine.router.Router.get_link"><tt class="xref py py-obj docutils literal"><span class="pre">get_link</span></tt></a>(source_link_id)</td>
+<tr class="row-odd"><td><a class="reference internal" href="#spinn_machine.router.Router.add_link" title="spinn_machine.router.Router.add_link"><tt class="xref py py-obj docutils literal"><span class="pre">add_link</span></tt></a>(link)</td>
+<td>Add a link to the router of the chip</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#spinn_machine.router.Router.get_link" title="spinn_machine.router.Router.get_link"><tt class="xref py py-obj docutils literal"><span class="pre">get_link</span></tt></a>(source_link_id)</td>
 <td>Get the link with the given id, or None if no such link.</td>
 </tr>
-<tr class="row-even"><td><a class="reference internal" href="#spinn_machine.router.Router.is_link" title="spinn_machine.router.Router.is_link"><tt class="xref py py-obj docutils literal"><span class="pre">is_link</span></tt></a>(source_link_id)</td>
+<tr class="row-odd"><td><a class="reference internal" href="#spinn_machine.router.Router.is_link" title="spinn_machine.router.Router.is_link"><tt class="xref py py-obj docutils literal"><span class="pre">is_link</span></tt></a>(source_link_id)</td>
 <td>Determine if there is a link with id source_link_id.</td>
 </tr>
 </tbody>
 </table>
 <p class="rubric">Detailed Methods</p>
+<dl class="method">
+<dt id="spinn_machine.router.Router.add_link">
+<tt class="descname">add_link</tt><big>(</big><em>link</em><big>)</big><a class="reference internal" href="_modules/spinn_machine/router.html#Router.add_link"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#spinn_machine.router.Router.add_link" title="Permalink to this definition">¶</a></dt>
+<dd><p>Add a link to the router of the chip</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>link</strong> (<a class="reference internal" href="spinn_machine.link.html#spinn_machine.link.Link" title="spinn_machine.link.Link"><tt class="xref py py-class docutils literal"><span class="pre">spinn_machine.link.Link</span></tt></a>) &#8211; The link to be added</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">Nothing is returned</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">None</td>
+</tr>
+<tr class="field-even field"><th class="field-name" colspan="2">Raises <a class="reference internal" href="spinn_machine.exceptions.html#spinn_machine.exceptions.SpinnMachineAlreadyExistsException" title="spinn_machine.exceptions.SpinnMachineAlreadyExistsException">spinn_machine.exceptions.SpinnMachineAlreadyExistsException</a>:</th></tr>
+<tr class="field-even field"><td>&nbsp;</td><td class="field-body">If                    another link already exists with the same source_link_id</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
 <dl class="method">
 <dt id="spinn_machine.router.Router.get_link">
 <tt class="descname">get_link</tt><big>(</big><em>source_link_id</em><big>)</big><a class="reference internal" href="_modules/spinn_machine/router.html#Router.get_link"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#spinn_machine.router.Router.get_link" title="Permalink to this definition">¶</a></dt>

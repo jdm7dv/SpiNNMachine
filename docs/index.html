@@ -46,7 +46,11 @@
         <div class="sphinxsidebarwrapper">
   <h3><a href="#">Table Of Contents</a></h3>
   <ul>
-<li><a class="reference internal" href="#">SpiNNMachine</a></li>
+<li><a class="reference internal" href="#">SpiNNMachine</a><ul>
+<li><a class="reference internal" href="#functional-requirements">Functional Requirements</a></li>
+<li><a class="reference internal" href="#use-cases">Use Cases</a></li>
+</ul>
+</li>
 <li><a class="reference internal" href="#indices-and-tables">Indices and tables</a></li>
 </ul>
 
@@ -82,6 +86,30 @@
   <div class="section" id="module-spinn_machine">
 <span id="spinnmachine"></span><h1>SpiNNMachine<a class="headerlink" href="#module-spinn_machine" title="Permalink to this headline">¶</a></h1>
 <p>A python abstraction of a SpiNNaker Machine.  The main functionality    is provided by <a class="reference internal" href="spinn_machine.machine.html#spinn_machine.machine.Machine" title="spinn_machine.machine.Machine"><tt class="xref py py-class docutils literal"><span class="pre">spinn_machine.machine.Machine</span></tt></a>.</p>
+<div class="section" id="functional-requirements">
+<h2>Functional Requirements<a class="headerlink" href="#functional-requirements" title="Permalink to this headline">¶</a></h2>
+<blockquote>
+<div><ul class="simple">
+<li>Create a machine which represents the current state of a machine, in          terms of the available chips, cores on the chips, SDRAM available,
+routable links between chips and available routing entries.</li>
+<li>Add a chip to a given machine to represent an external device.</li>
+<li>Add a link to a router of a given chip to represent a connection          to an external device.</li>
+<li>Create a representation of a multicast routing entry to be shared          between modules that deal with routing entries.</li>
+</ul>
+</div></blockquote>
+</div>
+<div class="section" id="use-cases">
+<h2>Use Cases<a class="headerlink" href="#use-cases" title="Permalink to this headline">¶</a></h2>
+<blockquote>
+<div><ul class="simple">
+<li><a class="reference internal" href="spinn_machine.machine.html#spinn_machine.machine.Machine" title="spinn_machine.machine.Machine"><tt class="xref py py-class docutils literal"><span class="pre">Machine</span></tt></a> is returned as a          representation of the current state of a machine.</li>
+<li><a class="reference internal" href="spinn_machine.machine.html#spinn_machine.machine.Machine" title="spinn_machine.machine.Machine"><tt class="xref py py-class docutils literal"><span class="pre">Machine</span></tt></a> is used as an outline of          a machine on which a simulation will be run e.g. for placement of          executables and/or finding routes between placed executables.</li>
+<li><a class="reference internal" href="spinn_machine.machine.html#spinn_machine.machine.Machine" title="spinn_machine.machine.Machine"><tt class="xref py py-class docutils literal"><span class="pre">Machine</span></tt></a> is extended to add          a virtual <a class="reference internal" href="spinn_machine.chip.html#spinn_machine.chip.Chip" title="spinn_machine.chip.Chip"><tt class="xref py py-class docutils literal"><span class="pre">Chip</span></tt></a> on the machine          representing an external peripheral connected to the machine directly          via a link from a chip, so that routes can be directed to and from          the external peripheral</li>
+<li><a class="reference internal" href="spinn_machine.multicast_routing_entry.html#spinn_machine.multicast_routing_entry.MulticastRoutingEntry" title="spinn_machine.multicast_routing_entry.MulticastRoutingEntry"><tt class="xref py py-class docutils literal"><span class="pre">MulticastRoutingEntry</span></tt></a>          is returned in a list of entries, which indicate the current set          of routing entries within a multicast routing table on a chip on the          machine.</li>
+<li><a class="reference internal" href="spinn_machine.multicast_routing_entry.html#spinn_machine.multicast_routing_entry.MulticastRoutingEntry" title="spinn_machine.multicast_routing_entry.MulticastRoutingEntry"><tt class="xref py py-class docutils literal"><span class="pre">MulticastRoutingEntry</span></tt></a>          is sent in a list of routing entries to set up routing on a chip          on the machine.</li>
+</ul>
+</div></blockquote>
+</div>
 <p>Contents:</p>
 <div class="toctree-wrapper compound">
 <ul>
