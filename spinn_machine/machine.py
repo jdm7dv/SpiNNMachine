@@ -49,6 +49,9 @@ class Machine(object):
         # The dictionary of spinnaker links by "id" (int)
         self._spinnaker_links = dict()
 
+        # the dictonary of fpga's associated with ethernet connected chip
+        self._fpgas = dict()
+
         # The dictionary of chips
         self._chips = OrderedDict()
         self.add_chips(chips)
@@ -56,6 +59,18 @@ class Machine(object):
         # Store the boot chip information
         self._boot_x = boot_x
         self._boot_y = boot_y
+
+    def add_fpga(self, fpga, ethernet_connected_chip):
+        if ethernet_connected_chip not in self._fpgas:
+            self._fpgas[ethernet_connected_chip] = list()
+        self._fpgas[ethernet_connected_chip].append(fpga)
+
+    def get_fpga(self, ethernet_connected_chip, id):
+        if ethernet_connected_chip not in self._fpgas:
+            return None
+        for fpga in self._fpgas[ethernet_connected_chip]:
+            if fpga.fpga_id == id:
+                return fpga
 
     def add_chip(self, chip):
         """ Add a chip to the machine

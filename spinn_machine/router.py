@@ -1,4 +1,4 @@
-from spinn_machine.exceptions import SpinnMachineAlreadyExistsException
+from spinn_machine import exceptions
 
 from collections import OrderedDict
 
@@ -52,9 +52,21 @@ class Router(object):
                     another link already exists with the same source_link_id
         """
         if link.source_link_id in self._links:
-            raise SpinnMachineAlreadyExistsException(
+            raise exceptions.SpinnMachineAlreadyExistsException(
                 "link", str(link.source_link_id))
         self._links[link.source_link_id] = link
+
+    def remove_link(self, link_id):
+        """
+        removes a link from a router, use sparingly.
+        :param link_id: the link id to remove
+        :return: None
+        """
+        if link_id in self._links:
+            del self._links[link_id]
+        else:
+            raise exceptions.SpinnMachineException(
+                "This link does not exist for deletion")
 
     def is_link(self, source_link_id):
         """ Determine if there is a link with id source_link_id.\

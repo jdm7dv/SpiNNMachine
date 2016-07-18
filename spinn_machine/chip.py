@@ -17,7 +17,7 @@ class Chip(object):
 
     def __init__(self, x, y, processors, router, sdram, nearest_ethernet_x,
                  nearest_ethernet_y, ip_address=None, virtual=False,
-                 tag_ids=IPTAG_IDS):
+                 fpga=False, tag_ids=IPTAG_IDS):
         """
 
         :param x: the x-coordinate of the chip's position in the\
@@ -61,6 +61,7 @@ class Chip(object):
         self._sdram = sdram
         self._ip_address = ip_address
         self._virtual = virtual
+        self._fpga = fpga
         self._tag_ids = tag_ids
         self._nearest_ethernet_x = nearest_ethernet_x
         self._nearest_ethernet_y = nearest_ethernet_y
@@ -142,6 +143,15 @@ class Chip(object):
         :raise None: this method does not raise any known exceptions
         """
         return self._virtual
+
+    @property
+    def fpga(self):
+        """ boolean which defines if a chip is a fpga or not
+        :return: if the chip is a fpga
+        :rtype: boolean
+        :raise None: this method does not raise any known exceptions
+        """
+        return self._fpga
 
     def __iter__(self):
         """ Get an iterable of processor identifiers and processors
